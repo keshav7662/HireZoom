@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const auth = require('./routes/auth.js')
+const jobSeeker = require('./routes/jobseeker.js')
 require('dotenv').config()
 
 const app = express();
@@ -21,6 +22,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use('/api', auth)
+app.use('/api', jobSeeker)
 
 
 app.use((req, res, next) => {
