@@ -6,13 +6,13 @@ require('dotenv').config()
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     res.send('Welcome to HireZoom')
 })
-app.get('/health',(req,res) => {
+app.get('/health', (req, res) => {
     res.json({
         serverName: 'WeekList Server',
         currentTime: new Date(),
@@ -20,10 +20,12 @@ app.get('/health',(req,res) => {
     })
 })
 
-app.use('/api',auth)
+app.use('/api', auth)
 
 
-
+app.use((req, res, next) => {
+    res.status(404).json({ message: 'Route not found' });
+});
 app.listen(process.env.PORT, () => {
     mongoose.connect(process.env.MONGO_URL)
         .then(() => {
