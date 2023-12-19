@@ -28,8 +28,8 @@ router.post('/register', async (req, res) => {
 
         res.status(200).json({
             message: 'User created  successsfully!',
-            name: fullName,
-            userId: email
+            recruiterName: fullName,
+            userId: email,
         })
     } catch (error) {
         errorHandler(res, error)
@@ -39,7 +39,6 @@ router.post('/register', async (req, res) => {
 //login
 router.post('/login', async (req, res) => {
     try {
-
         const { email, password } = req.body
         if (!email || !password) {
             return res.status(400).json({
@@ -62,7 +61,7 @@ router.post('/login', async (req, res) => {
         }
 
         //generate jwt token
-        const token = jwt.sign({ email: email }, process.env.JWT_SECRET)
+        const token = jwt.sign({ email: email, recruiterName: userFound.fullName }, process.env.JWT_SECRET)
         res.json({
             success: true,
             message: 'login successful!',

@@ -1,17 +1,19 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+
 const auth = require('./routes/auth.js')
 const jobSeeker = require('./routes/jobseeker.js')
+
 require('dotenv').config()
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    res.send('Welcome to HireZoom')
+    res.send('Welcome to HireZoom server')
 })
 app.get('/health', (req, res) => {
     res.json({
