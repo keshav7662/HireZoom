@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './signUpForm.module.css'
-import { registerUser } from '../../../apis/auth';
+import { registerUser } from '../../../apis/Auth';
 const signUpForm = () => {
   const [formData, setFormData] = useState({
     fullName: '',

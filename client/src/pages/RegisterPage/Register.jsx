@@ -1,5 +1,5 @@
 import React from 'react'
-import SignUpForm from '../../components/Form/SignUp/signUpForm'
+import SignUpForm from '../../components/Form/SignUpForm/SignUpForm'
 import Banner from '../../components/Banner/Banner'
 import styles from './register.module.css'
 const Register = () => {

@@ -26,10 +26,12 @@ router.post('/register', async (req, res) => {
         const user = new RegisteredUsers({ fullName, email, mobile, password: encryptedPassword })
         await user.save()
 
-        res.status(200).json({
-            message: 'User created  successsfully!',
+        const token = jwt.sign({ email: email, recruiterName: fullName }, process.env.JWT_SECRET)
+        res.json({
+            success: true,
+            message: 'login successful!',
             recruiterName: fullName,
-            userId: email,
+            token
         })
     } catch (error) {
         errorHandler(res, error)

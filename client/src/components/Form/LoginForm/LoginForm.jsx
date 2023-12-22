@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import styles from './loginForm.module.css'
-import { loginUser } from '../../../apis/auth'
+import { loginUser } from '../../../apis/Auth'
 const LoginForm = () => {
 
   const[loginData,setLoginData] = useState({
