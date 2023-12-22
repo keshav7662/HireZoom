@@ -1,0 +1,64 @@
+.login-form {
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+.login-form > p {
+    color: #525252;
+    font-size: 1.2rem;
+}
+.login-form  p > a{
+    color: black;
+    font-weight: 700;
+}
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.title>h1 {
+    font-weight: 700;
+    line-height: 144.023%;
+}
+
+.title>p {
+    color: #525252;
+    font-weight: 500;
+    line-height: 144.023%;
+    font-size: 1.2rem;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.input-area input {
+    width: 90%;
+    padding: 0.7rem 2rem;
+    border-radius: 5px;
+    border: 2px solid #C2C2C2;
+    background: #FFF;
+    font-size: 1.2rem;
+}
+
+.signup-btn {
+    padding: 0.5rem 1rem;
+    width: 40%;
+    border-radius: 3px;
+    background: #ED5353;
+    border: none;
+    color: #FFF;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    font-weight: 700;
+    line-height: 144.023%;
+    font-size: 1.2rem;
+    cursor: pointer;
+}

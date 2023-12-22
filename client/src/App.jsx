@@ -1,10 +1,12 @@
-
-import React from 'react'
-
+import React,{useEffect} from 'react'
+import Router from './Routes/Routes'
+import './App.css'
+import { Route } from 'react-router-dom'
 const App = () => {
+
   return (
     <>
-      Welcome to Hire zoom, An exclusive job seeking platform!
+      <Router/>
     </>
   )
 }
