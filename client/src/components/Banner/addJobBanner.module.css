@@ -1,0 +1,23 @@
+.banner {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+}
+
+.banner img {
+    height: 100%;
+    width: 100%;
+}
+
+.overlayText {
+    position: absolute;
+    top: 8%;
+    width: 100%;
+    color: white;
+    font-weight: 500;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 0.1rem;
+}

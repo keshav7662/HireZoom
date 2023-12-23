@@ -1,0 +1,73 @@
+.jobFormContainer {
+    padding: 2rem 3rem;
+}
+
+.formGroup {
+    display: flex;
+    align-items: center;
+    margin-top: 0.7rem;
+}
+
+.formGroup>label {
+    width: 40%;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.formGroup>input {
+    width: 60%;
+    padding: 0.2rem 1rem;
+    border-radius: 4.603px;
+    border: 1.841px solid #C2C2C2;
+    background: #FFF;
+    font-size: 0.8rem;
+}
+
+.jobType {
+    width: 20%;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4.603px;
+    border: 1.841px solid #C2C2C2;
+    background: #FFF;
+    color: #ADADAD;
+}
+
+.describeInput {
+    width: 60%;
+    padding: 0.2rem 1rem;
+    border-radius: 4.603px;
+    border: 1.841px solid #C2C2C2;
+    background: #FFF;
+    font-size: 0.8rem;
+    height: 70px;
+    resize: none;
+}
+
+.actionBtn {
+    padding-top: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+}
+.actionBtn > button {
+    border-radius: 6.508px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.cancelBtn {
+    color: #C2C2C2;
+    padding: 0.3rem 1.2rem;
+    border-radius: 6.508px;
+    border: 0.848px solid #CECECE;
+    background: #FFF;
+}
+
+.addJobBtn {
+    border: none;
+    padding: 0.3rem 1.2rem;
+    background-color: #ED5353;
+    display: flex;
+    align-items: center;
+    color: #ffff;
+}

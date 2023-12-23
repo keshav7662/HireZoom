@@ -1,0 +1,6 @@
+.addjob-page {
+    display: flex;
+}
+.form {
+    flex: 1;
+}

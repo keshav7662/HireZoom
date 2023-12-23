@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 100%;
 }
 .login-form > p {
     color: #525252;
@@ -40,7 +39,7 @@
 }
 
 .input-area > input {
-    width: 90%;
+    width: 80%;
     padding: 0.7rem 2rem;
     border-radius: 5px;
     border: 2px solid #C2C2C2;
@@ -59,7 +58,7 @@
 }
 .signup-btn {
     padding: 0.5rem 1rem;
-    width: 40%;
+    width: 50%;
     border-radius: 3px;
     background: #ED5353;
     border: none;
