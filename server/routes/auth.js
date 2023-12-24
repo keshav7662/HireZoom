@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
         const user = new RegisteredUsers({ fullName, email, mobile, password: encryptedPassword })
         await user.save()
 
-        const token = jwt.sign({ email: email, recruiterName: fullName }, process.env.JWT_SECRET)
+        const token = jwt.sign({ userId:user._id, email: email, recruiterName: fullName }, process.env.JWT_SECRET)
         res.json({
             success: true,
             message: 'login successful!',
@@ -63,7 +63,7 @@ router.post('/login', async (req, res) => {
         }
 
         //generate jwt token
-        const token = jwt.sign({ email: email, recruiterName: userFound.fullName }, process.env.JWT_SECRET)
+        const token = jwt.sign({ userId:userFound._id, email: email, recruiterName: userFound.fullName }, process.env.JWT_SECRET)
         res.json({
             success: true,
             message: 'login successful!',

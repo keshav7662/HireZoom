@@ -1,26 +1,26 @@
 .jobFormContainer {
-    padding: 2rem 3rem;
+    padding: 0.3rem 3rem;
 }
 
 .formGroup {
     display: flex;
-    align-items: center;
     margin-top: 0.7rem;
+    width: 100%;
 }
 
 .formGroup>label {
-    width: 40%;
+    width: 30%;
     font-weight: 700;
     font-size: 1rem;
 }
 
 .formGroup>input {
-    width: 60%;
-    padding: 0.2rem 1rem;
+    width: 70%;
+    padding: 0.4rem 1rem;
     border-radius: 4.603px;
     border: 1.841px solid #C2C2C2;
     background: #FFF;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .jobType {
@@ -33,28 +33,30 @@
 }
 
 .describeInput {
-    width: 60%;
+    width: 70%;
     padding: 0.2rem 1rem;
     border-radius: 4.603px;
     border: 1.841px solid #C2C2C2;
     background: #FFF;
     font-size: 0.8rem;
-    height: 70px;
+    height: 60px;
     resize: none;
 }
 
 .actionBtn {
-    padding-top: 0.8rem;
+    margin-top: 0.6rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 1.5rem;
 }
-.actionBtn > button {
+
+.actionBtn>button {
     border-radius: 6.508px;
     font-weight: 700;
     cursor: pointer;
 }
+
 .cancelBtn {
     color: #C2C2C2;
     padding: 0.3rem 1.2rem;

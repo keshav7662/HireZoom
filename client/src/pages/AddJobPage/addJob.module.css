@@ -1,5 +1,6 @@
 .addjob-page {
     display: flex;
+    align-items: center;
 }
 .form {
     flex: 1;

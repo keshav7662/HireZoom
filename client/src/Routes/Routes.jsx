@@ -7,6 +7,7 @@ const Router = () => {
   return (
     <>
      <Routes>
+        <Route path='/' element={<h1>Welcome To HireZoom!</h1>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/create-job' element={<AddJob/>}></Route>

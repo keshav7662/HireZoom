@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 import styles from './loginForm.module.css'
 import { loginUser } from '../../../apis/Auth'
+import {useNavigate,Link} from 'react-router-dom'
 const LoginForm = () => {
-
+  const navigate = useNavigate();
   const[loginData,setLoginData] = useState({
     email:'',
     password:''
@@ -23,8 +24,10 @@ const LoginForm = () => {
         token:response.data.token,
         userName:response.data.recruiterName
       }
+      alert('Login successful!')
       var newUserJSON = JSON.stringify(newUser);
       localStorage.setItem('token',newUserJSON)
+      navigate('/create-job')
     }
   }
   return (
@@ -51,7 +54,7 @@ const LoginForm = () => {
           />
           <button type="submit" className={styles['signup-btn']}>Sign in</button>
         </form>
-        <p>Don’t have an account?  <a href="/register">sign Up</a></p>
+        <p>Don’t have an account?  <Link to='/register'>sign Up</Link></p>
       </div>
     </>
   )

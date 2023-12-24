@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import styles from './signUpForm.module.css'
 import { registerUser } from '../../../apis/Auth';
+import { useNavigate,Link } from 'react-router-dom'
 const signUpForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -20,13 +22,15 @@ const signUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await registerUser(formData)
-    if(response) {
+    if (response) {
       const newUser = {
-        token:response.data.token,
-        userName:response.data.recruiterName
+        token: response.data.token,
+        recruiterName: response.data.recruiterName
       }
+      alert('user created successfully')
       var newUserJSON = JSON.stringify(newUser);
-      localStorage.setItem('token',newUserJSON)
+      localStorage.setItem('token', newUserJSON)
+      navigate('/create-job')
     }
 
   }
@@ -76,7 +80,7 @@ const signUpForm = () => {
           </div>
           <button type="submit" className={styles['signup-btn']}>Create Account</button>
         </form>
-        <p>Don’t have an account?  <a href="/">sign Up</a></p>
+        <p>Already have an account?  <Link to='/login'>Sign in</Link></p>
       </div>
     </>
   )
