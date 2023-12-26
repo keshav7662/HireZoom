@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
         const token = jwt.sign({ userId:user._id, email: email, recruiterName: fullName }, process.env.JWT_SECRET)
         res.json({
             success: true,
-            message: 'login successful!',
+            message: 'Registeration successful!',
             recruiterName: fullName,
             token
         })

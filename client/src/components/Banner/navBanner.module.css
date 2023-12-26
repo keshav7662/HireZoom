@@ -1,0 +1,74 @@
+.navBar {
+    height: 15vh;
+    position: relative;
+}
+
+.navBar img {
+    width: 100%;
+    height: 100%;
+}
+
+.navOverlayContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 2rem 3.5rem;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navOverlayContainer>p {
+    color: #FFF;
+    text-align: center;
+    font-family: DM Sans;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 144.023%;
+}
+
+.navOverlayText {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.navOverlayText>button {
+    padding: 0.2rem 1.2rem;
+    border-radius: 7px;
+    border: 2px solid #FFF;
+    font-size: 1.2rem;
+    background: #FF6B6B;
+    color: #FFF;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+}
+.navOverlayText > button:hover{
+    background: #fff;
+    color: #FF6B6B;
+    cursor: pointer;
+}
+.navOverlayText a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navOverlayText>button.logout {
+    border: none;
+    background: none;
+}
+
+.navOverlayText>button.logout:hover {
+    color: #FF6B6B;
+    background: #fff;
+}
+.recruiter {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 500;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './signUpForm.module.css'
 import { registerUser } from '../../../apis/Auth';
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 const signUpForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const signUpForm = () => {
         token: response.data.token,
         recruiterName: response.data.recruiterName
       }
-      alert('user created successfully')
+      alert(response.data.message)
       var newUserJSON = JSON.stringify(newUser);
       localStorage.setItem('token', newUserJSON)
       navigate('/create-job')

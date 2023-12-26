@@ -5,3 +5,6 @@
     box-sizing: border-box;
     font-family: 'DM Sans', sans-serif;
 }
+body, html {
+    height: 100%;
+}

@@ -1,0 +1,13 @@
+.chips {
+    background: #FFEEEE;
+    border-radius: 21px;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chips > span {
+    color: #595959;
+    font-size: 0.8rem;
+    font-weight: 700;
+}

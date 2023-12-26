@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { createJob } from '../apis/Auth'
+import { createJob } from '../apis/Jobs';
 
 const useJobForm = () => {
-const navigate = useNavigate();
+    const navigate = useNavigate();
     const [jobData, setJobData] = useState({
         companyName: '',
         logoURL: '',
@@ -30,10 +30,10 @@ const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await createJob(jobData)
-        if(response) {
+        if (response) {
             alert('job created succesfully!')
+            navigate('/job-details')
         }
-        console.log(response)
     }
     return { jobData, handleInputChange, handleSubmit }
 }
