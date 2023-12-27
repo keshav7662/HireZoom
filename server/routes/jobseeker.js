@@ -164,4 +164,22 @@ router.get('/job-details/:id', verifiedUser, async (req, res) => {
     }
 });
 
+//return all jobs
+router.get('/all-jobs',verifiedUser, async(req,res) => {
+    try {
+    const allJobs = await jobList.find()
+    if(!allJobs) {
+        return res.json({
+            error:'No job found!'
+        })
+    }
+    res.json({
+        message:'Available jobs on HIreZoom!',
+        allJobs
+    })
+    } catch (error) {
+        errorHandler(res, error);
+    }
+})
+
 module.exports = router;

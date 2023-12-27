@@ -4,6 +4,7 @@ import Login from '../pages/LoginPage/Login'
 import Register from '../pages/RegisterPage/Register'
 import AddJob from '../pages/AddJobPage/AddJob'
 import JobDescription from '../pages/JobDescriptionPage/JobDescription'
+import Home from '../pages/HomePage/Home'
 const Router = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const Router = () => {
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/create-job' element={<AddJob/>}></Route>
         <Route path='/job-details' element={<JobDescription/>}></Route>
+        <Route path='/all-jobs' element={<Home/>}></Route>
      </Routes> 
     </>
   )
