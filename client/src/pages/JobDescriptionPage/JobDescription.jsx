@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './jobDescription.module.css'
 import NavBanner from '../../components/Banner/NavBanner'
 import Google from '../../assets/Google.png'
@@ -6,15 +6,12 @@ import Stipened from '../../assets/stipened.svg'
 import Chip from '../../components/SkillsChip/Chip'
 import { getRelativeTime } from '../../utils/TimeFormatter'
 import { getJobData } from '../../apis/Jobs'
-const JobDescription = () => {
-  const [isLogin, setIsLogin] = useState(false)
-  const [jobDetail, setJobdetail] = useState({})
+import { AuthContext } from '../../Routes/Routes'
 
+const JobDescription = () => {
+  const [jobDetail, setJobdetail] = useState({})
+  const { isLogin } = useContext(AuthContext)
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('token'))
-    if (token) {
-      setIsLogin(true)
-    }
     viewDetails();
   }, []);
 
@@ -29,31 +26,30 @@ const JobDescription = () => {
 
   return (
     <div className={styles.container}>
-      <NavBanner recruiterName={jobDetail.recruiterName} isLogin={isLogin} />
+      <NavBanner />
       <div className={styles.jobDescPage}>
         <div className={styles.jobHeading}>
           <p>{`${jobDetail.position} work from ${jobDetail.remote} job/internship at ${jobDetail.companyName}`}</p>
         </div>
         <div className={styles.jobData}>
-          {/* job info */}
+         
           <div className={styles.jobInfo}>
             <p>{getRelativeTime(jobDetail.createdAt)}</p>
             <p>{jobDetail.jobType}</p>
             {
               isLogin &&
-                <div className={styles.companyName}>
-                  <div className={styles.companyLogo}>
-                    <img src={Google} alt="" />
-                  </div>
-                  <p>{jobDetail.companyName}</p>
+              <div className={styles.companyName}>
+                <div className={styles.companyLogo}>
+                  <img src={Google} alt="" />
                 </div>
+                <p>{jobDetail.companyName}</p>
+              </div>
             }
           </div>
 
           <div className={styles.jobPosition}>
             <h2>{jobDetail.position}</h2>
             {isLogin && <button className={styles.editBtn}>Edit Job</button>}
-
           </div>
 
           <div className={styles.location}>

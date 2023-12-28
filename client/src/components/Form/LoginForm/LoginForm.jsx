@@ -1,32 +1,33 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import styles from './loginForm.module.css'
 import { loginUser } from '../../../apis/Auth'
-import {useNavigate,Link} from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+
 const LoginForm = () => {
   const navigate = useNavigate();
-  const[loginData,setLoginData] = useState({
-    email:'',
-    password:''
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: ''
   })
   const handleInput = (e) => {
-    const {name,value} = e.target
+    const { name, value } = e.target
     setLoginData((prevData) => ({
       ...prevData,
-      [name] : value
+      [name]: value
     }))
   }
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const response = await loginUser(loginData)
     console.log(response.data)
-    if(response) {
+    if (response) {
       const newUser = {
-        token:response.data.token,
-        userName:response.data.recruiterName
+        token: response.data.token,
+        recruiterName: response.data.recruiterName
       }
       alert('Login successful!')
       var newUserJSON = JSON.stringify(newUser);
-      localStorage.setItem('token',newUserJSON)
+      localStorage.setItem('token', newUserJSON)
       navigate('/create-job')
     }
   }

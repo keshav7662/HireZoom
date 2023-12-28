@@ -4,16 +4,14 @@ import styles from './addJobForm.module.css'
 import useJobForm from '../../../utils/useJobForm'
 
 const addJobForm = () => {
-
   const { jobData, handleInputChange, handleSubmit } = useJobForm();
-
   return (
     <div className={styles.jobFormContainer}>
       <h1>Add Job description</h1>
       <form className={styles.jobForm} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="CompanyName">Company Name</label>
-          <input type="text" name="companyName" placeholder='Enter your company name here' onChange={handleInputChange} required/>
+          <input type="text" name="companyName" placeholder='Enter your company name here' onChange={handleInputChange} required />
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="LogoUrl">Add logo url</label>
@@ -75,14 +73,13 @@ const addJobForm = () => {
           <input type="text" name="additionalInfo" placeholder='Enter the additional information' onChange={handleInputChange} />
         </div>
         <div className={styles.actionBtn}>
-        <button className={styles.cancelBtn} type='button'>cancel</button>
-        <button className={styles.addJobBtn} type='submit'>
-          <img src={addIcon} alt="" />
-          Add Job
-        </button>
-      </div>
+          <button className={styles.cancelBtn} type='button'>cancel</button>
+          <button className={styles.addJobBtn} type='submit'>
+            <img src={addIcon} alt="" />
+            Add Job
+          </button>
+        </div>
       </form>
-      
     </div>
   )
 }

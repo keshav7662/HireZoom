@@ -1,0 +1,60 @@
+.filterArea {
+    background: #FFF;
+    box-shadow: 0px 0px 22px 4px rgba(255, 32, 32, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 70%;
+    margin: 2% auto;
+}
+
+.skillsDropdown {
+    display: flex;
+    width: 70%;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.skillsDropdown>select {
+    border-radius: 9px;
+    border: 2px solid #CECECE;
+    background: #FFF;
+    padding: 0.5rem 1rem;
+}
+
+.skillChip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.filterSection {
+    display: flex;
+    margin-top: 2%;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.addJobBtn>button {
+    border: none;
+    padding: 0.3rem 1.8rem;
+    background-color: #ED5353;
+    display: flex;
+    align-items: center;
+    color: #ffff;
+    border-radius: 6.508px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.clearBtn {
+    padding: 0.2rem 0.8rem;
+    border: none;
+    background: none;
+    color: #ED5353;
+    cursor: pointer;
+    font-size: 1rem;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './signUpForm.module.css'
 import { registerUser } from '../../../apis/Auth';
 import { useNavigate, Link } from 'react-router-dom'
+
 const signUpForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
