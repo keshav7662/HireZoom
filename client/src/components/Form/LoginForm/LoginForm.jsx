@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import styles from './loginForm.module.css'
 import { loginUser } from '../../../apis/Auth'
 import { useNavigate, Link } from 'react-router-dom'
-
+import { AuthContext } from '../../../Routes/Routes'
 const LoginForm = () => {
+  const{setIsLogin} = useContext(AuthContext)
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: '',
@@ -25,10 +26,10 @@ const LoginForm = () => {
         token: response.data.token,
         recruiterName: response.data.recruiterName
       }
-      alert('Login successful!')
       var newUserJSON = JSON.stringify(newUser);
       localStorage.setItem('token', newUserJSON)
-      navigate('/create-job')
+      setIsLogin(true)
+      navigate('/all-jobs')
     }
   }
   return (

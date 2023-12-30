@@ -32,7 +32,7 @@ const useJobForm = () => {
         const response = await createJob(jobData)
         if (response) {
             alert('job created succesfully!')
-            navigate('/job-details')
+            navigate('/all-jobs')
         }
     }
     return { jobData, handleInputChange, handleSubmit }

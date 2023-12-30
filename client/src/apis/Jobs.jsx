@@ -8,8 +8,8 @@ export const createJob = async (jobData) => {
         const headers = {
             'Content-Type': 'application/json',
             Authorization: token.token,
-          };
-        const response = await axios.post(Url, jobData, {headers})
+        };
+        const response = await axios.post(Url, jobData, { headers })
         return response;
     } catch (error) {
         console.log(error)
@@ -17,16 +17,21 @@ export const createJob = async (jobData) => {
     }
 }
 
-export const getJobData = async () => {
+export const getJobData = async (id) => {
     try {
-        const Url = `${backendBaseUrl}/job-details/658a879a5224e71081e694e6`
-        const token = JSON.parse(localStorage.getItem('token'))
-        const headers = {
-            'Content-Type': 'application/json',
-            Authorization: token.token,
-          };
-        const response = await axios.get(Url,{headers})
+        const Url = `${backendBaseUrl}/job-details/${id}`
+        const response = await axios.get(Url)
         return response;
+    } catch (error) {
+        console.log(error.response.data.error)
+    }
+}
+
+export const getAllJob = async () => {
+    try {
+        const Url = `${backendBaseUrl}/all-jobs`
+        const response = await axios.get(Url)
+        return response.data;
     } catch (error) {
         console.log(error.response.data.error)
     }

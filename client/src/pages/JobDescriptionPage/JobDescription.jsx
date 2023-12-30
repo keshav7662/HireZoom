@@ -7,8 +7,10 @@ import Chip from '../../components/SkillsChip/Chip'
 import { getRelativeTime } from '../../utils/TimeFormatter'
 import { getJobData } from '../../apis/Jobs'
 import { AuthContext } from '../../Routes/Routes'
+import { useParams } from 'react-router-dom';
 
 const JobDescription = () => {
+  const { id } = useParams();
   const [jobDetail, setJobdetail] = useState({})
   const { isLogin } = useContext(AuthContext)
   useEffect(() => {
@@ -17,7 +19,7 @@ const JobDescription = () => {
 
   const viewDetails = async () => {
     try {
-      const response = await getJobData();
+      const response = await getJobData(id);
       setJobdetail(response.data.jobDetails);
     } catch (error) {
       console.error("Error fetching job details:", error);
@@ -32,7 +34,6 @@ const JobDescription = () => {
           <p>{`${jobDetail.position} work from ${jobDetail.remote} job/internship at ${jobDetail.companyName}`}</p>
         </div>
         <div className={styles.jobData}>
-         
           <div className={styles.jobInfo}>
             <p>{getRelativeTime(jobDetail.createdAt)}</p>
             <p>{jobDetail.jobType}</p>

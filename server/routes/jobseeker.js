@@ -88,7 +88,6 @@ router.put('/edit-job', verifiedUser, async (req, res) => {
                 });
             }
         }
-
         // Update the job details
         // if i directly do companyName without (||) and if i didn't provided companyName it will give me an error
         await jobList.findByIdAndUpdate(id, {
@@ -143,7 +142,7 @@ router.get('/get-job', verifiedUser, async (req, res) => {
 })
 
 //get detail description of a job post
-router.get('/job-details/:id', verifiedUser, async (req, res) => {
+router.get('/job-details/:id', async (req, res) => {
     try {
         const { id } = req.params;
         // Find the job post by ID
@@ -165,18 +164,18 @@ router.get('/job-details/:id', verifiedUser, async (req, res) => {
 });
 
 //return all jobs
-router.get('/all-jobs',verifiedUser, async(req,res) => {
+router.get('/all-jobs', async (req, res) => {
     try {
-    const allJobs = await jobList.find()
-    if(!allJobs) {
-        return res.json({
-            error:'No job found!'
+        const availableJobs = await jobList.find()
+        if (!availableJobs) {
+            return res.json({
+                error: 'No job found!'
+            })
+        }
+        res.json({
+            message: 'Available jobs on HIreZoom!',
+            availableJobs
         })
-    }
-    res.json({
-        message:'Available jobs on HIreZoom!',
-        allJobs
-    })
     } catch (error) {
         errorHandler(res, error);
     }

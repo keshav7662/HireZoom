@@ -31,9 +31,8 @@ const signUpForm = () => {
       alert(response.data.message)
       var newUserJSON = JSON.stringify(newUser);
       localStorage.setItem('token', newUserJSON)
-      navigate('/create-job')
+      navigate('/all-jobs')
     }
-
   }
   return (
     <>

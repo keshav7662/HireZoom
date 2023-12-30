@@ -1,0 +1,9 @@
+.chipBox {
+    display: flex;
+    align-items: center;
+}
+.chipBox > span {
+    font-weight: 700;
+    background: #FFEEEE;
+    padding: 0.3rem 0.8rem;
+}

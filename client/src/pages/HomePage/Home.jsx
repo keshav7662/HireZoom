@@ -2,15 +2,17 @@ import React, { useState, useContext } from 'react'
 import NavBanner from '../../components/Banner/NavBanner'
 import Search from '../../components/SeacrhBar/Search'
 import styles from './home.module.css'
+import { useNavigate } from 'react-router-dom'
 import FilterChip from '../../components/FilteredChip/FilterChip'
 import AddIcon from '../../assets/addjobicon.png'
 import JobCard from '../../components/JobCard/JobCard'
 import { AuthContext } from '../../Routes/Routes'
-
 const Home = () => {
+
   const { isLogin } = useContext(AuthContext)
   const [selectedSkill, setSelectedSkill] = useState([])
   const options = ["HTML", "CSS", "JavaScript", "ReactJs", "NodeJs", "ExpressJs"];
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const dropValue = e.target.value;
@@ -18,7 +20,9 @@ const Home = () => {
       setSelectedSkill([...selectedSkill, dropValue]);
     }
   }
-
+  const handleAddJob = () => {
+    navigate('/create-job')
+  }
   const handleRemoveChip = (chipToRemove) => {
     const updatedSkills = selectedSkill.filter((skill) => skill !== chipToRemove)
     setSelectedSkill(updatedSkills)
@@ -53,7 +57,7 @@ const Home = () => {
           <div className={styles.addJobBtn}>
             {
               isLogin &&
-              <button>
+              <button onClick={handleAddJob}>
                 <img src={AddIcon} alt="" />
                 Add Job
               </button>
