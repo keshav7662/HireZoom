@@ -37,12 +37,12 @@ router.post('/create-job', verifiedUser, async (req, res) => {
                 additionalInfo
             })
             await newJob.save()
-            res.status(200).json({
+            return res.status(200).json({
                 message: 'User created  successsfully!',
                 newJob
             })
         } else {
-            res.status(400).json({
+            return res.status(400).json({
                 error: 'This job already exists!'
             })
         }
@@ -95,7 +95,7 @@ router.put('/edit-job', verifiedUser, async (req, res) => {
             position: position || existingJob.position
         });
 
-        res.status(200).json({
+        return res.status(200).json({
             status: 'success',
             message: 'Job list updated successfully!'
         });
@@ -105,17 +105,9 @@ router.put('/edit-job', verifiedUser, async (req, res) => {
 });
 
 //find job based on skills and job title
-router.get('/get-job', verifiedUser, async (req, res) => {
+router.get('/all-jobs', async (req, res) => {
     try {
-        const { skills, position } = req.body
-        if (!skills || !position) {
-            const allJobs = await jobList.find()
-            return res.status(200).json({
-                status: 'Success',
-                message: 'jobs retrived successfully!',
-                availableJobs: allJobs
-            })
-        }
+        const { skills, position } = req.query
         let query = {};
         if (skills) {
             // this checks whether the skills parameter is an array or not if not we will make it an array
@@ -124,14 +116,14 @@ router.get('/get-job', verifiedUser, async (req, res) => {
         if (position) {
             query.position = position
         }
-        const listAllJobs = await jobList.find(query)
+        const listAllJobs = Object.keys(query).length === 0 ? await jobList.find() : await jobList.find(query);
         if (!listAllJobs || listAllJobs.length === 0) {
-            res.json({
+            return res.json({
                 status: 'Failed!',
                 error: 'No job found based this filter!'
             })
         }
-        res.status(200).json({
+        return res.status(200).json({
             status: 'Success',
             message: 'Job found successfully!',
             availableJobs: listAllJobs
@@ -153,7 +145,7 @@ router.get('/job-details/:id', async (req, res) => {
                 error: 'Job not found!'
             });
         }
-        res.status(200).json({
+        return res.status(200).json({
             status: 'Success',
             message: 'Job details retrieved successfully!',
             jobDetails
@@ -162,23 +154,5 @@ router.get('/job-details/:id', async (req, res) => {
         errorHandler(res, error);
     }
 });
-
-//return all jobs
-router.get('/all-jobs', async (req, res) => {
-    try {
-        const availableJobs = await jobList.find()
-        if (!availableJobs) {
-            return res.json({
-                error: 'No job found!'
-            })
-        }
-        res.json({
-            message: 'Available jobs on HIreZoom!',
-            availableJobs
-        })
-    } catch (error) {
-        errorHandler(res, error);
-    }
-})
 
 module.exports = router;

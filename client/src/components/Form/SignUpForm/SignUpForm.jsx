@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import styles from './signUpForm.module.css'
 import { registerUser } from '../../../apis/Auth';
 import { useNavigate, Link } from 'react-router-dom'
-
+import { AuthContext } from '../../../Routes/Routes';
 const signUpForm = () => {
+  const {setIsLogin} = useContext(AuthContext)
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
@@ -31,6 +32,7 @@ const signUpForm = () => {
       alert(response.data.message)
       var newUserJSON = JSON.stringify(newUser);
       localStorage.setItem('token', newUserJSON)
+      setIsLogin(true)
       navigate('/all-jobs')
     }
   }

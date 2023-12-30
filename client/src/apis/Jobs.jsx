@@ -27,12 +27,14 @@ export const getJobData = async (id) => {
     }
 }
 
-export const getAllJob = async () => {
+export const getAllJob = async (query) => {
+    console.log(query)
     try {
         const Url = `${backendBaseUrl}/all-jobs`
-        const response = await axios.get(Url)
+        const response = await axios.get(Url, { params: query })
         return response.data;
     } catch (error) {
         console.log(error.response.data.error)
     }
 }
+

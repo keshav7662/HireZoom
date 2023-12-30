@@ -3,7 +3,6 @@ import styles from './filterChip.module.css'
 import Cross from '../../assets/cross.svg'
 
 const FilterChip = (props) => {
-    console.log(props)
     const handleRemove = () => {
         props.removeChip(props.selectedSkill)
     }

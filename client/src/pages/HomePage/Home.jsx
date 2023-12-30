@@ -8,16 +8,21 @@ import AddIcon from '../../assets/addjobicon.png'
 import JobCard from '../../components/JobCard/JobCard'
 import { AuthContext } from '../../Routes/Routes'
 const Home = () => {
-
   const { isLogin } = useContext(AuthContext)
   const [selectedSkill, setSelectedSkill] = useState([])
   const options = ["HTML", "CSS", "JavaScript", "ReactJs", "NodeJs", "ExpressJs"];
   const navigate = useNavigate();
+  const [query, setQuery] = useState({
+    skills: []
+  })
 
   const handleChange = (e) => {
     const dropValue = e.target.value;
     if (!selectedSkill.includes(dropValue)) {
       setSelectedSkill([...selectedSkill, dropValue]);
+      setQuery(() => ({
+        skills: [...selectedSkill, dropValue]
+      }))
     }
   }
   const handleAddJob = () => {
@@ -26,6 +31,9 @@ const Home = () => {
   const handleRemoveChip = (chipToRemove) => {
     const updatedSkills = selectedSkill.filter((skill) => skill !== chipToRemove)
     setSelectedSkill(updatedSkills)
+    setQuery({
+      skills: updatedSkills,
+    })
   }
   return (
     <div className={styles.homepage_container}>
@@ -68,11 +76,14 @@ const Home = () => {
           selectedSkill.length > 0 ? (
             <button className={styles.clearBtn} onClick={() => {
               setSelectedSkill([])
+              setQuery({
+                skills: '',
+              })
             }}>clear</button>
           ) : null
         }
       </div>
-      <JobCard />
+      <JobCard query={query} />
     </div>
   )
 }

@@ -7,21 +7,25 @@ import Flag from '../../assets/flag.png'
 import JobCardChip from './SkillChip/JobCardChip'
 import { getAllJob } from '../../apis/Jobs'
 import { AuthContext } from '../../Routes/Routes'
-const JobCard = () => {
+const JobCard = (props) => {
   const [allJobs, setAllJobs] = useState()
   const { isLogin } = useContext(AuthContext)
   const navigate = useNavigate()
+
   useEffect(() => {
     const fetchAllJobs = async () => {
       try {
-        const response = await getAllJob()
-        setAllJobs(response.availableJobs)
+        if (props.query) {
+          const response = await getAllJob(props.query)
+          console.log(response)
+          setAllJobs(response.availableJobs)
+        }
       } catch (error) {
         console.log(error.error)
       }
     }
     fetchAllJobs();
-  }, [])
+  }, [props])
 
   const viewDetail = async (id) => {
     try {
@@ -44,8 +48,8 @@ const JobCard = () => {
                 <h3>{item.position}</h3>
                 <div className={styles.requiredSkills}>
                   {
-                    item.skills && item.skills.map((skill) => (
-                      <JobCardChip selectedSkill={skill} />
+                    item.skills && item.skills.map((skill, index) => (
+                      <JobCardChip selectedSkill={skill} key={index} />
                     ))
                   }
                 </div>
