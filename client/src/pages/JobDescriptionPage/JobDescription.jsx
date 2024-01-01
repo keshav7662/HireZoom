@@ -7,10 +7,12 @@ import Chip from '../../components/SkillsChip/Chip'
 import { getRelativeTime } from '../../utils/TimeFormatter'
 import { getJobData } from '../../apis/Jobs'
 import { AuthContext } from '../../Routes/Routes'
-import { useParams } from 'react-router-dom';
+import { HandleEditJob } from '../../utils/HandleEditJob'
+import { useParams, useNavigate } from 'react-router-dom';
 
 const JobDescription = () => {
   const { id } = useParams();
+  const navigate = useNavigate()
   const [jobDetail, setJobdetail] = useState({})
   const { isLogin } = useContext(AuthContext)
   useEffect(() => {
@@ -50,7 +52,7 @@ const JobDescription = () => {
 
           <div className={styles.jobPosition}>
             <h2>{jobDetail.position}</h2>
-            {isLogin && <button className={styles.editBtn}>Edit Job</button>}
+            {isLogin && <button className={styles.editBtn} onClick={() => HandleEditJob(id,navigate)}>Edit Job</button>}
           </div>
 
           <div className={styles.location}>

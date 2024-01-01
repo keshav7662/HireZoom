@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import NavBanner from '../../components/Banner/NavBanner'
 import Search from '../../components/SeacrhBar/Search'
 import styles from './home.module.css'
+import debounce from 'lodash/debounce';
 import { useNavigate } from 'react-router-dom'
 import FilterChip from '../../components/FilteredChip/FilterChip'
 import AddIcon from '../../assets/addjobicon.png'
@@ -11,9 +12,11 @@ const Home = () => {
   const { isLogin } = useContext(AuthContext)
   const [selectedSkill, setSelectedSkill] = useState([])
   const options = ["HTML", "CSS", "JavaScript", "ReactJs", "NodeJs", "ExpressJs"];
+  const [searchInput, setSearchInput] = useState('');
   const navigate = useNavigate();
   const [query, setQuery] = useState({
-    skills: []
+    skills: [],
+    position:''
   })
 
   const handleChange = (e) => {
@@ -25,6 +28,16 @@ const Home = () => {
       }))
     }
   }
+  
+  const handleSearchChange = (e) => {
+    const inputValue = e.target.value.trim();
+    setSearchInput(() => inputValue);
+    setQuery((prevQuery) => ({
+      ...prevQuery,
+      position: inputValue
+    }));
+  };
+
   const handleAddJob = () => {
     navigate('/create-job')
   }
@@ -39,7 +52,7 @@ const Home = () => {
     <div className={styles.homepage_container}>
       <NavBanner />
       <div className={styles.filterArea}>
-        <Search />
+        <Search onSearchChange={handleSearchChange} />
         <div className={styles.filterSection}>
           <div className={styles.skillsDropdown}>
             <select
