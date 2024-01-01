@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createJob } from '../apis/Jobs';
+import { editJob } from '../apis/Jobs';
 
-const useJobForm = () => {
+const useJobForm = ({ isFormOpen, id }) => {
     const navigate = useNavigate();
     const [jobData, setJobData] = useState({
         companyName: '',
@@ -27,15 +28,25 @@ const useJobForm = () => {
         }))
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const response = await createJob(jobData)
-        if (response) {
-            alert('job created succesfully!')
-            navigate('/all-jobs')
+    const handleCreateOrUpdateJob = async () => {
+        if (isFormOpen) {
+            const response = await editJob(id, jobData)
+            if (response) {
+                navigate('/all-jobs')
+            }
+        } else {
+            const response = await createJob(jobData)
+            if (response) {
+                navigate('/all-jobs')
+            }
         }
     }
-    return { jobData, handleInputChange, handleSubmit }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        handleCreateOrUpdateJob()
+    }
+    return { jobData, setJobData, handleInputChange, handleSubmit }
 }
 
 export default useJobForm
