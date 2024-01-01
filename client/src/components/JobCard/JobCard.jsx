@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './jobcard.module.css'
-import companyLogo from '../../assets/companylogo.png'
 import EmpLogo from '../../assets/empvector.png'
 import Flag from '../../assets/flag.png'
 import JobCardChip from './SkillChip/JobCardChip'
+import { HandleEditJob } from '../../utils/HandleEditJob'
 import { getAllJob } from '../../apis/Jobs'
 import { AuthContext } from '../../Routes/Routes'
 const JobCard = (props) => {
   const [allJobs, setAllJobs] = useState()
   const { isLogin } = useContext(AuthContext)
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -17,8 +18,8 @@ const JobCard = (props) => {
       try {
         if (props.query) {
           const response = await getAllJob(props.query)
-          console.log(response)
           setAllJobs(response.availableJobs)
+          setLoading(false)
         }
       } catch (error) {
         console.log(error.error)
@@ -37,11 +38,12 @@ const JobCard = (props) => {
 
   return (
     <>
+      {loading && <>Loading.......</>}
       {
         allJobs && allJobs.map((item) => (
           <div className={styles.jobCards} key={item._id}>
             <div className={styles.companyIcon}>
-              <img src={companyLogo} alt="" />
+              <img src={item.logoURL} alt="" />
             </div>
             <div className={styles.allDataContainer}>
               <div className={styles.titleSkills}>
@@ -67,7 +69,7 @@ const JobCard = (props) => {
                   <span>{item.jobType}</span>
                 </div>
                 <div className={styles.edit_view_btn}>
-                  {isLogin && <button className={styles.edit_btn}>Edit Job</button>}
+                  {isLogin && <button className={styles.edit_btn} onClick={() => HandleEditJob(item._id, navigate)}>Edit Job</button>}
                   <button className={styles.view_btn} onClick={() => viewDetail(item._id)}>View Details</button>
                 </div>
               </div>

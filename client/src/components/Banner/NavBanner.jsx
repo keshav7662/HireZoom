@@ -1,13 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Navbanner from '../../assets/navbar.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './navBanner.module.css'
-import recruiter from '../../assets/recruiter.png'
+import HireZoomLogo from '../../assets/hirezoom-logo.png'
 import { AuthContext } from '../../Routes/Routes'
 const NavBanner = () => {
   const { isLogin, recruiterName,setIsLogin } = useContext(AuthContext)
-  const navigate = useNavigate()
-
   const handleLogOut = () => {
     localStorage.removeItem('token')
     setIsLogin(false)
@@ -17,13 +15,13 @@ const NavBanner = () => {
       <div className={styles.navBar}>
         <img src={Navbanner} alt="" />
         <div className={styles.navOverlayContainer}>
-          <p>Jobfinder</p>
+          <p>HireZoom</p>
           {
             isLogin ? (<div className={styles.navOverlayText}>
               <button className={styles.logout} onClick={handleLogOut}>Logout</button>
               <p className={styles.recruiter}>{`Hello,${recruiterName}`}</p>
-              <div>
-                <img src={recruiter} alt="" />
+              <div className={styles.companyLogo}>
+                <img src={HireZoomLogo} alt="" />
               </div>
             </div>)
               :
