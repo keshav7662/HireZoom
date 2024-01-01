@@ -38,7 +38,7 @@ router.post('/create-job', verifiedUser, async (req, res) => {
             })
             await newJob.save()
             return res.status(200).json({
-                message: 'User created  successsfully!',
+                message: 'Job created successsfully!',
                 newJob
             })
         } else {
@@ -52,16 +52,23 @@ router.post('/create-job', verifiedUser, async (req, res) => {
 })
 
 //edit job
-router.put('/edit-job', verifiedUser, async (req, res) => {
+router.put('/edit-job/:id', verifiedUser, async (req, res) => {
     try {
-        //get fields you wiah to update
-        const { id, companyName, position } = req.body;
-
-        if (!companyName && !position) {
-            return res.status(400).json({
-                error: 'Please provide details you wish to update!'
-            });
-        }
+        //get fields you wish to update
+        const { id } = req.params
+        const {
+            companyName,
+            position,
+            logoURL,
+            salary,
+            jobType,
+            remote,
+            location,
+            description,
+            aboutCompany,
+            skills,
+            additionalInfo
+        } = req.body;
 
         // Find the existing job by ID
         const existingJob = await jobList.findById(id);
@@ -88,16 +95,32 @@ router.put('/edit-job', verifiedUser, async (req, res) => {
                 });
             }
         }
+
+        //convert skills into an array
+        let skillsInArray = skills
+        if (typeof skills === 'string') {
+            skillsInArray = skills.split(',').map(skill => skill.trim())
+        }
+
         // Update the job details
-        // if i directly do companyName without (||) and if i didn't provided companyName it will give me an error
         await jobList.findByIdAndUpdate(id, {
             companyName: companyName || existingJob.companyName,
-            position: position || existingJob.position
+            position: position || existingJob.position,
+            logoURL: logoURL || existingJob.logoURL,
+            salary: salary || existingJob.salary,
+            jobType: jobType || existingJob.jobType,
+            remote: remote || existingJob.remote,
+            location: location || existingJob.location,
+            description: description || existingJob.description,
+            aboutCompany: aboutCompany || existingJob.aboutCompany,
+            skills: skillsInArray || existingJob.skills,
+            recruiterName: req.user.recruiterName,
+            additionalInfo: additionalInfo || existingJob.additionalInfo
         });
 
         return res.status(200).json({
             status: 'success',
-            message: 'Job list updated successfully!'
+            message: 'Job updated successfully!'
         });
     } catch (error) {
         errorHandler(res, error);
@@ -120,12 +143,12 @@ router.get('/all-jobs', async (req, res) => {
         if (!listAllJobs || listAllJobs.length === 0) {
             return res.json({
                 status: 'Failed!',
-                error: 'No job found based this filter!'
+                error: 'No job found based on this filter!'
             })
         }
         return res.status(200).json({
             status: 'Success',
-            message: 'Job found successfully!',
+            message: 'List of available jobs!',
             availableJobs: listAllJobs
         })
     } catch (error) {

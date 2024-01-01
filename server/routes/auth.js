@@ -75,4 +75,23 @@ router.post('/login', async (req, res) => {
     }
 })
 
+//all-users
+router.get('/all-users', async (req, res) => {
+    try {
+      const allUsers = await RegisteredUsers.find();
+     if(allUsers.length !== 0) {
+        return res.json({
+            success: true,
+            users: allUsers,
+          });
+     }else {
+        return res.json({
+            success:false
+        })
+     }
+    } catch (error) {
+      errorHandler(res, error);
+    }
+  });
+
 module.exports = router;
