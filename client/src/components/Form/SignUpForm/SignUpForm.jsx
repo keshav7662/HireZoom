@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import styles from './signUpForm.module.css'
-import { registerUser } from '../../../apis/Auth';
+import { registerUser } from '../../../apis/UserAuth';
 import { useNavigate, Link } from 'react-router-dom'
 import { AuthContext } from '../../../Routes/Routes';
 const signUpForm = () => {
