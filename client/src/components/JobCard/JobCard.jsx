@@ -38,7 +38,11 @@ const JobCard = (props) => {
 
   return (
     <>
-      {loading && <>Loading.......</>}
+      {loading &&
+        <div className={styles['loading-spinner-container']}>
+          <div className={styles['loading-spinner']}></div>
+          <p>Loading...</p>
+        </div>}
       {
         allJobs && allJobs.map((item) => (
           <div className={styles.jobCards} key={item._id}>
