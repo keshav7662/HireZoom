@@ -26,6 +26,9 @@ HireZoom is a full stack web application built using the MERN (MongoDB, Express.
 - **Share Using Public Link:**
   - Similar to the job listing page, each job detail has a public link for easy sharing.
 
+#Preview
+![](./client/src/assets/sample.png)
+
 ## Getting Started
 
 To run the HireZoom application locally, follow these steps:
